@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Page;
 use App\Http\Controllers\Controller;
 use App\Http\Livewire\Saff;
 use App\Mail\Saffmail;
+use App\Models\Category;
 use App\Models\Partner;
 use App\Models\Post;
 use App\Models\Tag;
@@ -31,7 +32,8 @@ class PageController extends Controller
     public function blogdetails(Post  $post){
         $blogtag = Tag::latest('id')->get();
         $recentblog = Post::latest('id')->get();
-        return view('frontend.blog-details', compact('post'));
+        $categorie = Category::latest('id')->get();
+        return view('frontend.blog-details', compact('post','blogtag','recentblog','categorie'));
     }
 
     public function blog(){
